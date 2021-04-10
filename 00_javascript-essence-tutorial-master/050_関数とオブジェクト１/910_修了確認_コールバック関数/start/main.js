@@ -3,14 +3,25 @@
  * setTimeoutの実行から１秒後にブラウザの
  * コンソールに'hello Tom'と表示されるように
  * 実装してみましょう。
- * 
+ *
  * ※必ずperson.helloメソッドは解答内で使用してください。
  */
 const person = {
-    hello: function () {
-        return 'hello Tom';
-    }
-}
+  hello: function () {
+    return "hello Tom";
+  },
+};
+const hello = function () {
+  console.log(person.hello());
+};
+setTimeout(
+  function () {
+    const hello = person.hello();
+    console.log(hello);
+  },
+  //   hello,
+  1000
+);
 
 // setTimeout(/** ここに追記 */, 1000);
 
@@ -19,12 +30,15 @@ const person = {
  * setTimeoutの実行から１秒後にブラウザの
  * ダイアログに'hello Tom'と表示されるように
  * 実装してみましょう。
- * 
+ *
  * ※必ずperson.helloメソッドは解答内で使用してください。
  * ※alertは第一引数に渡した文字列を画面のダイアログに表
  * 示する関数です。
  */
 
+setTimeout(function () {
+  alert(person.hello());
+}, 5000);
 
 /**
  * 問題３：
@@ -37,22 +51,21 @@ const person = {
  * 'hello'または'hey'のどちらでしょうか？
  */
 const obj = {};
-obj.greeting = function() {
-    console.log('hello');
-}
+obj.greeting = function () {
+  console.log("hello");
+};
 
 function after1s(callack) {
-    setTimeout(callack, 1000);
+  setTimeout(callack, 1000);
 }
 
 // この時点で実行します。
-// after1s(obj.greeting);
+after1s(obj.greeting);
 
 // この後でgreetingを書き換えます。
-obj.greeting = function() {
-    console.log('hey');
-}
-
+obj.greeting = function () {
+  console.log("hey");
+};
 
 /**
  * 問題４：
@@ -60,37 +73,37 @@ obj.greeting = function() {
  * コンソール(console.log)に表示するか、
  * ダイアログ(alert)に出力するかを
  * 使い分けできるようにしてください。
- * 
+ *
  * ※コールバック関数を用いて実装してください。
  */
-function calcFactory(val) {
-    return {
-        plus: function(target) {
-            const newVal = val + target;
-            console.log(`${val} + ${target} = ${newVal}`);
-            val = newVal;
-        },
-        minus: function(target) {
-            const newVal = val - target;
-            console.log(`${val} - ${target} = ${newVal}`);
-            val = newVal;
-        },
-        multiply: function(target) {
-            const newVal = val * target;
-            console.log(`${val} x ${target} = ${newVal}`);
-            val = newVal;
-        },
-        divide: function(target) {
-            const newVal = val / target;
-            console.log(`${val} / ${target} = ${newVal}`);
-            val = newVal;
-        }
-    };
+function calcFactory(val, output) {
+  return {
+    plus: (target) => {
+      const newVal = val + target;
+      output(`${val} + ${target} = ${newVal}`);
+      val = newVal;
+    },
+    minus: function (target) {
+      const newVal = val - target;
+      output(`${val} - ${target} = ${newVal}`);
+      val = newVal;
+    },
+    multiply: function (target) {
+      const newVal = val * target;
+      output(`${val} x ${target} = ${newVal}`);
+      val = newVal;
+    },
+    divide: function (target) {
+      const newVal = val / target;
+      output(`${val} / ${target} = ${newVal}`);
+      val = newVal;
+    },
+  };
 }
 
-const calc = calcFactory(10);
-calc.plus(5); 
-calc.minus(3); 
+// const calc = calcFactory(10, alert);
+const calc = calcFactory(10, console.log);
+calc.plus(5);
+calc.minus(3);
 calc.multiply(3);
 calc.divide(2);
-
