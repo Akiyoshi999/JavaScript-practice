@@ -5,7 +5,7 @@
         {{ title }}
       </p>
       <div class="deletelist" @click="removeList">
-        X
+        x
       </div>
     </div>
   </div>
