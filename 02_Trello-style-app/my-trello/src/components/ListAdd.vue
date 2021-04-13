@@ -7,7 +7,7 @@
       placeholder="Add new list"
       @focusin="startEditing"
       @focusout="finishEditing"
-    />
+    >
 
     <button v-if="isEditing || titleExists" type="submit" class="add-button">
       Add
