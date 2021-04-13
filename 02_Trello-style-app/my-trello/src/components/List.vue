@@ -8,11 +8,15 @@
         x
       </div>
     </div>
+    <Card-add :listIndex="listIndex" />
   </div>
 </template>
 
 <script>
+import CardAdd from './CardAdd'
+
 export default {
+  components: { CardAdd },
   props: {
     title: {
       type: String,
