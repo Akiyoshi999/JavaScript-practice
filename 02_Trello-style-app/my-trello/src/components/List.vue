@@ -4,6 +4,7 @@
       <p class="=list-title">
         {{ title }}
       </p>
+      <p class="list-counter">total: {{ totalCardInList }}</p>
       <div class="deletelist" @click="removeList">
         x
       </div>
@@ -37,6 +38,11 @@ export default {
     listIndex: {
       type: Number,
       required: true
+    }
+  },
+  computed: {
+    totalCardInList() {
+      return this.cards.length
     }
   },
   methods: {
