@@ -9,13 +9,15 @@
         x
       </div>
     </div>
-    <card
-      v-for="(item, index) in cards"
-      :body="item.body"
-      :key="item.id"
-      :cardIndex="index"
-      :listIndex="listIndex"
-    />
+    <draggable group="cards" :list="cards" @end="$emit('change')">
+      <card
+        v-for="(item, index) in cards"
+        :body="item.body"
+        :key="item.id"
+        :cardIndex="index"
+        :listIndex="listIndex"
+      />
+    </draggable>
     <Card-add :list-index="listIndex" />
   </div>
 </template>
@@ -23,9 +25,14 @@
 <script>
 import Card from './Card.vue'
 import CardAdd from './CardAdd'
+import draggable from 'vuedraggable'
 
 export default {
-  components: { CardAdd, Card },
+  components: {
+    CardAdd,
+    Card,
+    draggable
+  },
   props: {
     title: {
       type: String,
