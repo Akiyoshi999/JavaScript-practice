@@ -1,14 +1,14 @@
 <template>
   <form :class="classList" @submit.prevent="addCardToList">
     <input
+      v-model="body"
       type="text"
       class="text-input"
-      v-model="body"
       placeholder="Add new card"
       @focusin="startEditing"
       @focusout="finishEditing"
-    />
-    <button type="submit" class="add-button" v-if="isEditing || bodyExists">
+    >
+    <button v-if="isEditing || bodyExists" type="submit" class="add-button">
       Add
     </button>
   </form>
